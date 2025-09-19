@@ -1,1 +1,26 @@
-.github/workflows/
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: |
+          echo "Building"
+          mkdir build
+          touch build/info.txt
+
+      - name: Test
+        run: |
+          echo "Testing"
+          test -f "build/info.txt"
